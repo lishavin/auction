@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<button><a href ="{% url 'index.html' %}">Home</a></button>
+
+<div>
+    <input>
+</div>
+
+<div>
+    <div>{{ item.image }}</div>
+    <div>{{ item.email }}</div>
+</div>
+
+<div>
+    <div>{{ item.create_time }}</div>
+    <div>{{ item.name }}</div>
+    <div>{{ item.info }}</div>
+    <div>{{ item.min_bid }} </div>
+</div>
+
+<div>
+    <p>리스트</p>
+</div>
+
+<div id="timer">00:00:00</div>
+
+<div>
+    <p>번호</p>
+    <p>입력칸</p>
+    <a href="{% url 'add_item' %}" class="btn btn-primary">start bidding!</a>
+</div>
+
+
+{% endblock%}

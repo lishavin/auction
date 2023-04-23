@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<button><a href="{% url 'index' %}">home</a></button>
+
+<h5> *Caution: you CAN'T edit once you submit</h5>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p}}
+            
+        <input type="submit" value = 'start bidding'>
+    </form>
+    
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Set the time remaining in seconds (24 hours)
+        const timeRemaining = 24 * 60 * 60;
+        let secondsLeft = timeRemaining;
+    
+        function updateTimerDisplay() {
+            const hours = Math.floor(secondsLeft / 3600);
+            const minutes = Math.floor((secondsLeft % 3600) / 60);
+            const seconds = secondsLeft % 60;
+    
+            // Format the timer display
+            const timerDisplay = document.getElementById("timer");
+            timerDisplay.textContent = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+        }
+    
+        // Update the timer display every second
+        setInterval(function() {
+            if (secondsLeft > 0) {
+                secondsLeft -= 1;
+                updateTimerDisplay();
+            } else {
+                clearInterval(this);
+            }
+        }, 1000);
+    
+        // Initialize the timer display
+        updateTimerDisplay();
+    });
+    </script>
+    
+
+
+
+{% endblock %}
